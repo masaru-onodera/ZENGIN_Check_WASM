@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>全銀協フォーマットチェッカー</RootNamespace>
+		<LangVersion>preview</LangVersion>
+		<AssemblyName></AssemblyName>
+		<GHPages>true</GHPages>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+		<PackageReference Include="PublishSPAforGitHubPages.Build" Version="2.1.0" />
+	</ItemGroup>
+	<Import Project="..\全銀協フォーマットチェッカー\全銀協フォーマットチェッカー.projitems" Label="Shared" />
+	<Import Project="..\全銀協フォーマットチェッカー for Blazor\全銀協フォーマットチェッカー for Blazor.projitems" Label="Shared" />
+</Project>

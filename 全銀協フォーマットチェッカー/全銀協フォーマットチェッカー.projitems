@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8c8d5223-55e1-4d81-bd47-a0b844a70df5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>全銀協フォーマットチェッカー</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)文字種別.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)解析型\A1：振込.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)解析型\91：口座振替.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)データ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)データセット.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)レコード.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)解析型\解析型.cs" />
+  </ItemGroup>
+</Project>

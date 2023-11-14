@@ -1,0 +1,153 @@
+﻿@page "/"
+
+<h1>全銀協フォーマットチェッカー</h1>
+
+<InputFile OnChange="@LoadFile" oncancel="@Reset" />
+<br />
+
+@if (IBrowserFile != null)
+{
+    <strong>File Size:</strong> @IBrowserFile.Size
+    <table rules="all" border="1">
+        @if (データ != null)
+        {
+            @foreach (var データセット in データ.データセット配列)
+            {
+                <tr>
+                    <td bgcolor="#DDDDFF">
+                        <strong>・ヘッダー</strong>
+                        <table rules="all" border="1" bordercolor="black">
+                            <tr>
+                                @foreach (var Key in データセット.ヘッダー.Keys)
+                                {
+                                    <td><strong> @Key </strong></td>
+                                }
+                            </tr>
+                            <tr>
+                                @foreach (var Value in データセット.ヘッダー.Values)
+                                {
+                                    <td> @Value </td>
+                                }
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                @if (0 != データセット.データ配列.Count)
+                {
+                    <tr>
+                        <td bgcolor="#DDFFDD">
+                            <strong>・データ</strong>
+                            <table rules="all" border="1" bordercolor="black">
+                                <tr>
+                                    @foreach (var Key in データセット.データ配列.First().Keys)
+                                    {
+                                        <td><strong> @Key </strong></td>
+                                    }
+                                </tr>
+                                @foreach (var データ in データセット.データ配列)
+                                {
+                                    <tr>
+                                        @foreach (var Value in データ.Values)
+                                        {
+                                            <td> @Value </td>
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td bgcolor="#FFDDDD">
+                        <strong>・トレーラ</strong>
+                        <table rules="all" border="1" bordercolor="black">
+                            <tr>
+                                @foreach (var Key in データセット.トレーラ.Keys)
+                                {
+                                    <td><strong> @Key </strong></td>
+                                }
+                            </tr>
+                            <tr>
+                                @foreach (var Value in データセット.トレーラ.Values)
+                                {
+                                    <td> @Value </td>
+                                }
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td bgcolor="#EEEEEE">
+                    <strong>・エンド</strong><table rules="all" border="1" bordercolor="black">
+                        <tr>
+                            @foreach (var Key in データ.エンド.Keys)
+                            {
+                                <td><strong> @Key </strong></td>
+                            }
+                        </tr>
+                        <tr>
+                            @foreach (var Value in データ.エンド.Values)
+                            {
+                                <td> @Value </td>
+                            }
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @if (エラーメッセージ != "")
+            {
+                <tr>
+                    <td bgcolor="#EEEEEE">
+                        <font color="red">
+                            <strong>・エラー</strong>
+                            <table rules="all" border="1" bordercolor="black">
+                                <tr>
+                                    <td> @エラーメッセージ </td>
+                                </tr>
+                            </table>
+                        </font>
+                    </td>
+                </tr>
+            }else{
+                <tr>
+                    <td> データ解析中 </td>
+                </tr>
+            }
+        }
+    </table>
+}else{
+    <br/><font color="#222299">
+    <strong>・チェック対応種別コード</strong>
+    <table rules="all" border="1" bordercolor="black"><tr>
+        @foreach(var 種別コード in 全銀協フォーマット.データ.対応種別コード){
+            <td><b> @種別コード </b></td>
+        }
+    </tr></table>
+    </font>
+}
+
+@code {
+    IBrowserFile? IBrowserFile;
+    string エラーメッセージ = "";
+    全銀協フォーマット.データ? データ;
+
+    void Reset() { エラーメッセージ = ""; データ = null; IBrowserFile = null; }
+    async Task LoadFile(InputFileChangeEventArgs e)
+    {
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+        try
+        {
+            Reset();
+            IBrowserFile = e.GetMultipleFiles(1)[0];
+            var buf = new byte[IBrowserFile.Size];
+            await IBrowserFile.OpenReadStream().ReadAsync(buf);
+            データ = new(buf, 120);
+        }
+        catch (Exception ex) { エラーメッセージ = ex.Message; }
+    }
+}
