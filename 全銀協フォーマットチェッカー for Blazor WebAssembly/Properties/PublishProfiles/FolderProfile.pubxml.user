@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\masar\source\repos\masaruonodera.github.com\全銀協フォーマットチェッカー\全銀協フォーマットチェッカー for Blazor WebAssembly\bin\publish\</_PublishTargetUrl>
-    <History>True|2023-11-28T00:35:12.9329918Z;True|2023-11-28T08:08:27.4579752+09:00;False|2023-11-28T08:04:52.2288257+09:00;</History>
+    <History>True|2023-12-24T02:51:33.9452343Z;True|2023-11-28T09:35:12.9329918+09:00;True|2023-11-28T08:08:27.4579752+09:00;False|2023-11-28T08:04:52.2288257+09:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

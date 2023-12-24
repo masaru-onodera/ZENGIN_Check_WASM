@@ -18,15 +18,15 @@
                         <strong>・ヘッダー</strong>
                         <table rules="all" border="1" bordercolor="black">
                             <tr>
-                                @foreach (var Key in データセット.ヘッダー.Keys)
+                                @foreach (var array in データセット.ヘッダー)
                                 {
-                                    <td><strong> @Key </strong></td>
+                                    <td><strong> @array.Key </strong></td>
                                 }
                             </tr>
                             <tr>
-                                @foreach (var Value in データセット.ヘッダー.Values)
+                                @foreach (var array in データセット.ヘッダー)
                                 {
-                                    <td> @Value </td>
+                                    <td title="@array.Key"> @array.Value </td>
                                 }
                             </tr>
                         </table>
@@ -38,18 +38,25 @@
                         <td bgcolor="#DDFFDD">
                             <strong>・データ</strong>
                             <table rules="all" border="1" bordercolor="black">
-                                <tr>
-                                    @foreach (var Key in データセット.データ配列.First().Keys)
-                                    {
-                                        <td><strong> @Key </strong></td>
-                                    }
-                                </tr>
+                                    <tr>
+                                        @foreach (var データ配列_Keys配列 in データセット.データ配列_Keys)
+                                        {
+                                            <td><table rules="all" border="0">
+                                                @foreach(var array in データ配列_Keys配列)
+                                                {
+                                                    <tr>
+                                                    <td><strong> @array.Key </strong></td>
+                                                    </tr>
+                                                }
+                                            </table></td>
+                                        }
+                                    </tr>
                                 @foreach (var データ in データセット.データ配列)
                                 {
                                     <tr>
-                                        @foreach (var Value in データ.Values)
+                                        @foreach (var array in データ)
                                         {
-                                            <td> @Value </td>
+                                            <td title="@array.Key"> @array.Value </td>
                                         }
                                     </tr>
                                 }
@@ -57,21 +64,20 @@
                         </td>
                     </tr>
                 }
-
                 <tr>
                     <td bgcolor="#FFDDDD">
                         <strong>・トレーラ</strong>
                         <table rules="all" border="1" bordercolor="black">
                             <tr>
-                                @foreach (var Key in データセット.トレーラ.Keys)
+                                @foreach (var array in データセット.トレーラ)
                                 {
-                                    <td><strong> @Key </strong></td>
+                                    <td><strong> @array.Key </strong></td>
                                 }
                             </tr>
                             <tr>
-                                @foreach (var Value in データセット.トレーラ.Values)
+                                @foreach (var array in データセット.トレーラ)
                                 {
-                                    <td> @Value </td>
+                                    <td title="@array.Key"> @array.Value </td>
                                 }
                             </tr>
                         </table>
@@ -80,17 +86,18 @@
             }
             <tr>
                 <td bgcolor="#EEEEEE">
-                    <strong>・エンド</strong><table rules="all" border="1" bordercolor="black">
+                    <strong>・エンド</strong>
+                    <table rules="all" border="1" bordercolor="black">
                         <tr>
-                            @foreach (var Key in データ.エンド.Keys)
+                            @foreach (var array in データ.エンド)
                             {
-                                <td><strong> @Key </strong></td>
+                                <td><strong> @array.Key </strong></td>
                             }
                         </tr>
                         <tr>
-                            @foreach (var Value in データ.エンド.Values)
+                            @foreach (var array in データ.エンド)
                             {
-                                <td> @Value </td>
+                                <td title="@array.Key"> @array.Value </td>
                             }
                         </tr>
                     </table>
